@@ -1,5 +1,3 @@
-# Module 3: Node - Day 5
+# Module 3-5: Node POST method
 
-## Note
-
-There is no `sass` in this project. If you need to write some CSS, it's back to basics!
+See `__workshop` for exercises.
