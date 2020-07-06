@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins|Rubik&display=swap');
 
-/* CSS RESET */
+/* Light CSS RESET */
 html,
 body,
 ul,
@@ -24,14 +24,16 @@ body {
 
 .centered-container {
   background-color: #f6f7fc;
+  border-radius: 4px;
   box-shadow: 0 60px 120px rgba(71, 69, 123, 0.24),
     0 15px 35px rgba(71, 69, 123, 0.24);
   width: 400px;
-  height: 800px;
+  padding-bottom: 14px;
 }
 .order-image {
   background: url(./assets/question.jpg) no-repeat center;
   background-size: cover;
+  border-radius: 4px 4px 0 0;
   height: 190px;
   width: 100%;
   overflow: hidden;
@@ -92,12 +94,18 @@ h2 {
   width: 100%;
 }
 
+.form-item select {
+  height: 40px;
+  border-radius: 3px;
+  padding: 0 8px;
+}
+
 .order-display,
 .form-item select.order {
   border: none;
   box-shadow: 0 60px 120px rgba(71, 69, 123, 0.24),
     0 15px 35px rgba(71, 69, 123, 0.24);
-  margin: -30px auto 0;
+  margin: -26px auto 0;
   width: 100%;
   position: absolute;
 }

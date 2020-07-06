@@ -4,8 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
-const PORT = process.env.PORT || 8000;
-
 express()
   .use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -24,4 +22,4 @@ express()
   // endpoints
 
   .get('*', (req, res) => res.send('Dang. 404.'))
-  .listen(PORT, () => console.log(`Listening on port ${PORT}`));
+  .listen(8000, () => console.log(`Listening on port 8000`));
