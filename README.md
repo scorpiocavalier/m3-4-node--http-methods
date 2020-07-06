@@ -1,27 +1,6 @@
-# Module 3-5: Node POST method
+# Module 3-4: Express Methods
 
-## Exercise 1
-
-Create a todo list! (You must have seen this coming.)
-
-**Do NOT look at yesterday's workshop to complete this.**
-
-### Guidelines
-
-- create an endpoint called `/todos` to render your todo app.
-- create an endpoint called `/data` to receive the data from the form `post` request.
-
-### Stretch Goal
-
-**Once you have completed Exercise 2, you can come back here and add more features.**
-
-- multiple lists?
-- a `done` button that crosses out the item.
-- a `delete` button that deletes the item.
-
----
-
-## Exercise 2
+## The Order Form
 
 Take a look at the form that is available at [`/order-form`](http://localhost:8000/order-form). The form itself is in the `public` folder.
 
@@ -31,7 +10,7 @@ It is an order form for promotional products. Users need to fill out the complet
 
 For this exercise, you will need to create the endpoint that this form submits to. You will need to validate the data you receive and respond to the request appropriately.
 
-To be clear, **you don't need to edit any of the code in `public/order-form/scripts.js`**. This work is done for you. Your primary task is to create the server endpoint to process the order.
+To be clear, **you don't need to edit any of the code in `public/order-form/scripts.js`**. This work is done for you. Your primary task is to create the server endpoint to process the order. Once your server is complete, the form should work fine.
 
 #### Validation
 
@@ -88,12 +67,6 @@ The form makes a POST request to the `/order` path; you will need to create this
 
 You don't need to change the front-end at all; it's already set up to send the correct data when the form is submitted, and to handle any error codes.
 
----
-
-<center>🟡 - Minimally complete workshop (75%) - 🟡</center>
-
----
-
 ### Order Confirmed
 
 If the order is successfully placed, the frontend will redirect the user to `/order-confirmed`. This page doesn't exist yet.
@@ -102,11 +75,11 @@ Create a new file at `/public/order-confirmed.html`. There is no provided design
 
 ---
 
-<center>🟢 - Complete workshop (100%) - 🟢</center>
+<center>🟡 - Minimally complete workshop (75%) - 🟡</center>
 
 ---
 
-### Stretch goal
+### Create a Confirmation Page
 
 Instead of showing a "static" order-confirmed page, render a template that includes the order information. For example:
 
@@ -118,3 +91,24 @@ To accomplish this, you'll need:
 
 - A new GET endpoint for `/order-confirmed`
 - A new template with variables for the dynamic content.
+
+---
+
+<center>🟢 - Complete workshop (100%) - 🟢</center>
+
+---
+
+## Stretch Goal
+
+Create a todo list! (You must have seen this coming.)
+
+**Do NOT look at yesterday's workshop to complete this.**
+
+- create an endpoint called `/todos` to render your todo app.
+- create an endpoint called `/data` to receive the data from the form `post` request.
+
+### Super Stretch Goal
+
+- multiple lists?
+- a `done` button that crosses out the item.
+- a `delete` button that deletes the item.
