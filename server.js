@@ -22,13 +22,16 @@ express()
 
 
   .get('/order-confirmed', (req, res) => {
-    res.sendFile(__dirname + "/public/order-confirmed.html")
+    const { name, product, province } = req.query
+    res.render('pages/order-confirmed', { name, product, province })
   })
 
   .post('/order', (req, res) => {
     const info = req.body
     const isValid = validate(info)
-    res.send(isValid)
+    const { givenName: name, order: product, province } = info
+    const { status, error } = isValid
+    res.send({ status, error, name, product, province })
   })
 
   .get('*', (req, res) => res.send('Dang. 404.'))

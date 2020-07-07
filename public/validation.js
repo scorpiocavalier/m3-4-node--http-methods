@@ -50,13 +50,12 @@ const isInStock = info => {
 }
 
 const findItem = (key, value, object) => {
-  
   for(const item in object) {
     if(key === item) {
-      if(value === 'undefined')
+      if(value === 'undefined') {
         if(Number(object[item]) > 0)
           return { "status": "success" }
-      else
+      } else
         return findItem(value, 'undefined', object[item])
     }
   }
@@ -65,12 +64,13 @@ const findItem = (key, value, object) => {
 }
 
 const validate = info => {
+  
+  let isValid
 
   const validationMethods = [
-    isNameExists, isEmailExists, isAddressExists, isInCanada, isInStock
+    isNameExists, isEmailExists, isAddressExists, 
+    isInCanada, isInStock
   ]
-
-  let isValid
 
   for(const validationMethod of validationMethods) {
     isValid = validationMethod(info)
