@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const validation = require('./public/validation')
+const { validate } = require('./public/validation')
 
 express()
   .use(function (req, res, next) {
@@ -20,10 +20,19 @@ express()
   .use(express.urlencoded({ extended: false }))
   .set('view engine', 'ejs')
 
+
+  .get('/order-confirmed', (req, res) => {
+    res.sendFile(__dirname + "/public/order-confirmed.html")
+  })
+
   .post('/order', (req, res) => {
     const info = req.body
-    const validated = validation.validate(info)
-    console.log(validated)
+    const validated = validate(info)
+    const data = {
+      "status": "success",
+      "error": 'some error message'
+    }
+    res.send(data)
   })
 
   .get('*', (req, res) => res.send('Dang. 404.'))
