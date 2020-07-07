@@ -64,8 +64,8 @@ const handleSubmit = (event) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((res) => res.json())
-    .then((data) => {
+    .then(res => res.json())
+    .then(data => {
       const { status, error } = data;
       if (status === 'success') {
         window.location.href = '/order-confirmed';
