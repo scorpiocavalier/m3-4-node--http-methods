@@ -6,19 +6,20 @@ const isNameExists = info => {
   for(const customer of customers) {
     if(givenName.toLowerCase() === customer.givenName.toLowerCase()
       && surname.toLowerCase() === customer.surname.toLowerCase())
-      return true
+      return { "status": "error", "error": "repeat-customer" }
   }
 
-  return false
+  return { "status": "success" }
 }
 
 const isEmailExists = info => {
   const { email } = info
 
   for(const customer of customers)
-    if(customer.email === email) return true
+    if(customer.email === email)
+      return { "status": "error", "error": "repeat-customer" }
 
-  return false
+  return { "status": "success" }
 }
 
 const isAddressExists = info => {
@@ -26,23 +27,26 @@ const isAddressExists = info => {
 
   for(const customer of customers)
     if(customer.address.toLowerCase() === address.toLowerCase())
-      return true
+      return { "status": "error", "error": "repeat-customer" }
 
-  return false
+  return { "status": "success" }
 }
 
 const isInCanada = info => {
   const { country } = info
   
-  return country.toLowerCase() === 'canada' ? true : false
+  if(country.toLowerCase() === 'canada')
+    return { "status": "success" }
+  else
+    return { "status": "error", "error": "undeliverable" }
 }
 
 const isInStock = info => {
   const { order, size } = info
 
-  const itemInStock = findItem(order, size, stock)
+  const isValid = findItem(order, size, stock)
 
-  return itemInStock
+  return isValid
 }
 
 const findItem = (key, value, object) => {
@@ -50,28 +54,30 @@ const findItem = (key, value, object) => {
   for(const item in object) {
     if(key === item) {
       if(value === 'undefined')
-        if(Number(object[item]) > 0) return true
+        if(Number(object[item]) > 0)
+          return { "status": "success" }
       else
         return findItem(value, 'undefined', object[item])
     }
   }
 
-  return false
+  return { "status": "error", "error": "unavailable" }
 }
 
 const validate = info => {
-  const userExists = isNameExists(info)
-  const emailExists = isEmailExists(info)
-  const addressExists = isAddressExists(info)
-  const addressInCanada = isInCanada(info)
-  const itemInStock = isInStock(info)
 
-  console.log(itemInStock)
+  const validationMethods = [
+    isNameExists, isEmailExists, isAddressExists, isInCanada, isInStock
+  ]
 
-  return (
-    userExists && emailExists && addressExists 
-    && addressInCanada && itemInStock
-  )
+  let isValid
+
+  for(const validationMethod of validationMethods) {
+    isValid = validationMethod(info)
+    if(isValid.status === "error") return isValid
+  }
+
+  return isValid
 }
 
 module.exports = { validate }

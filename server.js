@@ -27,12 +27,8 @@ express()
 
   .post('/order', (req, res) => {
     const info = req.body
-    const validated = validate(info)
-    const data = {
-      "status": "success",
-      "error": 'some error message'
-    }
-    res.send(data)
+    const isValid = validate(info)
+    res.send(isValid)
   })
 
   .get('*', (req, res) => res.send('Dang. 404.'))
